@@ -29,16 +29,16 @@ export function InvitesList({ invites }: { invites: Invite[] }) {
   return (
     <ul className="space-y-2">
       {invites.map((invite) => (
-        <li key={invite.id} className="flex items-center justify-between rounded-xl bg-panel-muted px-4 py-2.5 text-sm">
+        <li key={invite.id} className="flex items-center justify-between rounded border border-board-line bg-board px-4 py-2.5 text-sm">
           <div>
-            <p className="font-medium">{invite.email}</p>
-            <p className="text-xs text-foreground/50">{titleCase(invite.status)}</p>
+            <p className="font-medium text-strip">{invite.email}</p>
+            <p className="font-mono text-[11px] uppercase tracking-wide text-strip/40">{titleCase(invite.status)}</p>
           </div>
           {invite.status === "PENDING" && (
             <button
               type="button"
               onClick={() => handleRevoke(invite.id)}
-              className="text-xs font-medium text-status-red hover:underline"
+              className="font-mono text-xs font-medium uppercase tracking-wide text-brick-500 hover:underline"
             >
               Revoke
             </button>

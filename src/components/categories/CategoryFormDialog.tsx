@@ -77,7 +77,7 @@ function CategoryForm({
                 onClick={() => setColor(c)}
                 className={cn(
                   "h-7 w-7 rounded-full border-2",
-                  color === c ? "border-black/60" : "border-transparent"
+                  color === c ? "border-strip" : "border-transparent"
                 )}
                 style={{ backgroundColor: c }}
               />

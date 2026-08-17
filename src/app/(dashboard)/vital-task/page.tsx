@@ -14,7 +14,7 @@ export default async function VitalTaskPage() {
 
   return (
     <div>
-      <h2 className="mb-4 text-lg font-semibold">Vital Tasks</h2>
+      <h2 className="mb-4 font-display text-lg font-semibold text-strip">Vital Tasks</h2>
       <TaskBoard
         tasks={tasks}
         categories={categories}

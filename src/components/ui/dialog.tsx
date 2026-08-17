@@ -42,15 +42,18 @@ export function Dialog({
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className={cn("w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl", className)}
+        className={cn(
+          "w-full max-w-lg rounded-lg border border-board-line bg-board-raised p-6 shadow-2xl",
+          className
+        )}
       >
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold">{title}</h2>
+        <div className="mb-5 flex items-center justify-between border-b border-board-line pb-3">
+          <h2 className="font-display text-base font-semibold uppercase tracking-wide text-strip">{title}</h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="rounded-full p-1 text-foreground/60 hover:bg-black/5"
+            className="rounded p-1 text-strip/50 hover:bg-board hover:text-strip"
           >
             <X size={18} />
           </button>

@@ -19,29 +19,28 @@ export function Header() {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const title = routeTitles[pathname] ?? "Dashboard";
-  const [primary, ...rest] = title.split(" ");
 
   return (
-    <header className="flex items-center gap-6 border-b border-black/5 bg-panel px-8 py-4">
-      <h1 className="shrink-0 text-xl font-bold">
-        <span className="text-coral-500">{primary}</span>{rest.length ? ` ${rest.join(" ")}` : ""}
+    <header className="flex items-center gap-6 border-b border-board-line bg-board-raised px-8 py-4">
+      <h1 className="shrink-0 font-display text-lg font-semibold uppercase tracking-wide text-strip">
+        {title}
       </h1>
 
       <form
-        className="mx-auto flex w-full max-w-md items-center gap-2 rounded-full bg-panel-muted px-4 py-2"
+        className="mx-auto flex w-full max-w-md items-center gap-2 rounded border border-board-line bg-strip px-4 py-2"
         onSubmit={(e) => {
           e.preventDefault();
           router.push(query ? `/my-task?q=${encodeURIComponent(query)}` : "/my-task");
         }}
       >
-        <Search size={16} className="text-foreground/40" />
+        <Search size={16} className="text-ink-soft" />
         <input
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search your task here..."
           aria-label="Search tasks"
-          className="w-full bg-transparent text-sm outline-none placeholder:text-foreground/40"
+          className="w-full bg-transparent font-mono text-sm text-ink outline-none placeholder:text-ink-soft"
         />
       </form>
 
@@ -49,20 +48,20 @@ export function Header() {
         <button
           type="button"
           aria-label="Notifications"
-          className="rounded-full bg-panel-muted p-2 text-foreground/60 hover:bg-coral-50"
+          className="rounded border border-board-line p-2 text-strip/60 hover:border-teal-500/50 hover:text-strip"
         >
-          <Bell size={18} />
+          <Bell size={17} />
         </button>
         <button
           type="button"
           aria-label="Calendar"
-          className="rounded-full bg-panel-muted p-2 text-foreground/60 hover:bg-coral-50"
+          className="rounded border border-board-line p-2 text-strip/60 hover:border-teal-500/50 hover:text-strip"
         >
-          <CalendarDays size={18} />
+          <CalendarDays size={17} />
         </button>
-        <div className="text-right text-sm leading-tight">
-          <div className="font-medium">{format(new Date(), "EEEE")}</div>
-          <div className="text-coral-500">{format(new Date(), "dd/MM/yyyy")}</div>
+        <div className="rounded border border-board-line px-3 py-1.5 text-right font-mono text-xs leading-tight text-strip/70">
+          <div className="uppercase tracking-wide">{format(new Date(), "EEEE")}</div>
+          <div className="text-teal-500">{format(new Date(), "dd/MM/yyyy")}</div>
         </div>
       </div>
     </header>

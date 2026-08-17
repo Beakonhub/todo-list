@@ -2,7 +2,7 @@ import { type InputHTMLAttributes, forwardRef, type TextareaHTMLAttributes, type
 import { cn } from "@/lib/utils";
 
 const fieldClasses =
-  "w-full rounded-lg border border-black/10 bg-white px-3 py-2 text-sm outline-none focus:border-coral-500 focus:ring-1 focus:ring-coral-500";
+  "w-full rounded border border-board-line bg-strip px-3 py-2 font-mono text-sm text-ink outline-none placeholder:text-ink-soft focus:border-teal-500 focus:ring-1 focus:ring-teal-500";
 
 export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => (
@@ -37,7 +37,10 @@ export function Label({
   htmlFor?: string;
 }) {
   return (
-    <label htmlFor={htmlFor} className={cn("mb-1 block text-xs font-medium text-foreground/70", className)}>
+    <label
+      htmlFor={htmlFor}
+      className={cn("mb-1 block font-mono text-[11px] font-medium uppercase tracking-wide text-strip/50", className)}
+    >
       {children}
     </label>
   );

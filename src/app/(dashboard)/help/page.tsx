@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "What do the status colors mean?",
-    a: "Red means Not Started, blue means In Progress, and green means Completed — the same colors used in the Task Status chart on your Dashboard.",
+    a: "The brick-red tab means Not Started, amber means In Progress, and teal means Completed — the same colors used in the Task Status gauges on your Dashboard.",
   },
   {
     q: "Can I change my profile details?",
@@ -28,14 +28,14 @@ const faqs = [
 export default function HelpPage() {
   return (
     <div className="max-w-2xl">
-      <h2 className="mb-4 text-lg font-semibold">Help &amp; FAQ</h2>
+      <h2 className="mb-4 font-display text-lg font-semibold text-strip">Help &amp; FAQ</h2>
       <div className="space-y-3">
         {faqs.map((faq) => (
-          <details key={faq.q} className="group rounded-2xl bg-panel p-4 shadow-sm">
-            <summary className="cursor-pointer list-none font-medium">
+          <details key={faq.q} className="group rounded border border-board-line bg-board-raised p-4">
+            <summary className="cursor-pointer list-none font-medium text-strip">
               {faq.q}
             </summary>
-            <p className="mt-2 text-sm text-foreground/60">{faq.a}</p>
+            <p className="mt-2 text-sm text-strip/50">{faq.a}</p>
           </details>
         ))}
       </div>

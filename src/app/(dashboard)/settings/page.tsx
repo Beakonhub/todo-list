@@ -19,12 +19,12 @@ export default async function SettingsPage() {
   return (
     <div className="max-w-xl space-y-6">
       <div>
-        <h2 className="mb-4 text-lg font-semibold">Profile</h2>
+        <h2 className="mb-4 font-display text-lg font-semibold text-strip">Profile</h2>
         <ProfileForm user={user} />
       </div>
       <div>
-        <h2 className="mb-4 text-lg font-semibold">Sent invites</h2>
-        <div className="rounded-2xl bg-panel p-6 shadow-sm">
+        <h2 className="mb-4 font-display text-lg font-semibold text-strip">Sent invites</h2>
+        <div className="rounded border border-board-line bg-board-raised p-6">
           <InvitesList invites={invites} />
         </div>
       </div>

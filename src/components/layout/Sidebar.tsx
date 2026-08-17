@@ -28,22 +28,22 @@ export function Sidebar({ user }: { user: { name?: string | null; email?: string
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-full w-64 shrink-0 flex-col bg-coral-500 px-4 py-6 text-white">
-      <div className="mb-8 flex flex-col items-center text-center">
-        <div className="relative mb-3 h-16 w-16 overflow-hidden rounded-full bg-white/20">
+    <aside className="flex h-full w-64 shrink-0 flex-col border-r border-board-line bg-board-raised px-4 py-6">
+      <div className="mb-8 flex flex-col items-center border-b border-board-line pb-6 text-center">
+        <div className="relative mb-3 h-14 w-14 overflow-hidden rounded border-2 border-teal-500/50 bg-board">
           {user.image ? (
-            <Image src={user.image} alt="" fill sizes="64px" className="object-cover" unoptimized />
+            <Image src={user.image} alt="" fill sizes="56px" className="object-cover" unoptimized />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-lg font-semibold">
+            <div className="flex h-full w-full items-center justify-center font-display text-base font-semibold text-teal-500">
               {initials(user.name)}
             </div>
           )}
         </div>
-        <p className="font-semibold">{user.name ?? "User"}</p>
-        <p className="text-xs text-white/70">{user.email}</p>
+        <p className="font-display font-semibold text-strip">{user.name ?? "User"}</p>
+        <p className="font-mono text-[11px] text-strip/40">{user.email}</p>
       </div>
 
-      <nav className="flex-1 space-y-1" aria-label="Main navigation">
+      <nav className="flex-1 space-y-0.5" aria-label="Main navigation">
         {navItems.map(({ href, label, icon: Icon }) => {
           const active = pathname === href;
           return (
@@ -52,11 +52,18 @@ export function Sidebar({ user }: { user: { name?: string | null; email?: string
               href={href}
               prefetch={false}
               className={cn(
-                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
-                active ? "bg-white text-coral-600" : "text-white/90 hover:bg-white/15"
+                "relative flex items-center gap-3 rounded px-3 py-2.5 text-sm font-medium transition-colors",
+                active ? "bg-board text-strip" : "text-strip/60 hover:bg-board hover:text-strip"
               )}
             >
-              <Icon size={18} />
+              <span
+                className={cn(
+                  "absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full transition-colors",
+                  active ? "bg-teal-500" : "bg-transparent"
+                )}
+                aria-hidden
+              />
+              <Icon size={17} strokeWidth={active ? 2.25 : 1.75} />
               {label}
             </Link>
           );
@@ -66,9 +73,9 @@ export function Sidebar({ user }: { user: { name?: string | null; email?: string
       <button
         type="button"
         onClick={() => logout()}
-        className="mt-auto flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/15"
+        className="mt-auto flex items-center gap-3 rounded px-3 py-2.5 text-sm font-medium text-brick-500/80 transition-colors hover:bg-brick-500/10 hover:text-brick-500"
       >
-        <LogOut size={18} />
+        <LogOut size={17} strokeWidth={1.75} />
         Logout
       </button>
     </aside>

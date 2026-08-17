@@ -46,7 +46,7 @@ export function WelcomeBanner({
 
   return (
     <div className="mb-6 flex items-center justify-between">
-      <h2 className="text-2xl font-semibold">
+      <h2 className="font-display text-2xl font-semibold text-strip">
         Welcome back, {firstName} <span aria-hidden>👋</span>
       </h2>
       <div className="flex items-center gap-3">
@@ -54,13 +54,13 @@ export function WelcomeBanner({
           {collaborators.slice(0, 5).map((c) => (
             <div
               key={c.id}
-              className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-white bg-coral-100"
+              className="relative h-9 w-9 overflow-hidden rounded border-2 border-board bg-board-raised"
               title={c.user.name ?? c.user.email}
             >
               {c.user.image ? (
                 <Image src={c.user.image} alt="" fill sizes="36px" className="object-cover" unoptimized />
               ) : (
-                <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-coral-700">
+                <div className="flex h-full w-full items-center justify-center font-mono text-xs font-semibold text-teal-500">
                   {initials(c.user.name ?? c.user.email)}
                 </div>
               )}

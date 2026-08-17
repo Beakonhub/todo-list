@@ -52,25 +52,30 @@ export function CategoryBoard({ categories }: { categories: CategoryWithCount[] 
         </Button>
       </div>
       {categories.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-black/10 p-6 text-center text-sm text-foreground/50">
+        <p className="rounded border border-dashed border-board-line p-6 text-center text-sm text-strip/40">
           No categories yet. Create one to start organizing tasks.
         </p>
       ) : (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((c) => (
-            <div key={c.id} className="flex items-center justify-between rounded-2xl bg-panel p-4 shadow-sm">
+            <div
+              key={c.id}
+              className="flex items-center justify-between rounded border border-board-line bg-board-raised p-4"
+            >
               <Link href={`/my-task?categoryId=${c.id}`} className="flex items-center gap-3">
-                <span className="h-4 w-4 rounded-full" style={{ backgroundColor: c.color }} />
+                <span className="h-3 w-3 rounded-full" style={{ backgroundColor: c.color }} />
                 <div>
-                  <p className="font-medium">{c.name}</p>
-                  <p className="text-xs text-foreground/50">{c._count.tasks} task(s)</p>
+                  <p className="font-display text-sm font-medium text-strip">{c.name}</p>
+                  <p className="font-mono text-[11px] uppercase tracking-wide text-strip/40">
+                    {c._count.tasks} task(s)
+                  </p>
                 </div>
               </Link>
               <button
                 type="button"
                 aria-label={`Delete ${c.name}`}
                 onClick={() => handleDelete(c)}
-                className="rounded p-1.5 text-foreground/40 hover:bg-red-50 hover:text-status-red"
+                className="rounded p-1.5 text-strip/40 hover:bg-brick-500/10 hover:text-brick-500"
               >
                 <Trash2 size={16} />
               </button>

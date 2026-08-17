@@ -102,7 +102,7 @@ export function TaskBoard({
         </div>
       )}
       {tasks.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-black/10 p-6 text-center text-sm text-foreground/50">
+        <p className="rounded border border-dashed border-board-line p-6 text-center text-sm text-strip/40">
           {emptyMessage}
         </p>
       ) : (

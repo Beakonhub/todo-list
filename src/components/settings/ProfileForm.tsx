@@ -34,7 +34,7 @@ export function ProfileForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl bg-panel p-6 shadow-sm">
+    <form onSubmit={handleSubmit} className="space-y-4 rounded border border-board-line bg-board-raised p-6">
       <div>
         <Label htmlFor="profile-name">Name</Label>
         <Input id="profile-name" value={name} onChange={(e) => setName(e.target.value)} required />

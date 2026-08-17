@@ -8,7 +8,7 @@ export default async function TaskCategoriesPage() {
 
   return (
     <div>
-      <h2 className="mb-4 text-lg font-semibold">Task Categories</h2>
+      <h2 className="mb-4 font-display text-lg font-semibold text-strip">Task Categories</h2>
       <CategoryBoard categories={categories} />
     </div>
   );

@@ -27,7 +27,7 @@ export default async function MyTaskPage({
 
   return (
     <div>
-      <h2 className="mb-4 text-lg font-semibold">My Task</h2>
+      <h2 className="mb-4 font-display text-lg font-semibold text-strip">My Task</h2>
       <TaskFilters categories={categories} />
       <TaskBoard
         tasks={tasks}

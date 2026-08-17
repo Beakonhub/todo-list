@@ -45,7 +45,7 @@ export default function SignupPage() {
 
   return (
     <>
-      <h1 className="mb-6 text-center text-lg font-semibold">Create your account</h1>
+      <h1 className="mb-6 text-center font-display text-lg font-semibold text-strip">Create your account</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <Label htmlFor="signup-name">Name</Label>
@@ -77,9 +77,9 @@ export default function SignupPage() {
           {submitting ? "Creating account..." : "Sign up"}
         </Button>
       </form>
-      <p className="mt-4 text-center text-sm text-foreground/60">
+      <p className="mt-4 text-center text-sm text-strip/50">
         Already have an account?{" "}
-        <Link href="/login" className="font-medium text-coral-500">
+        <Link href="/login" className="font-medium text-teal-500">
           Sign in
         </Link>
       </p>

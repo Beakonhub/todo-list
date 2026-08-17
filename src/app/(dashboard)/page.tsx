@@ -39,11 +39,13 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <section className="lg:col-span-2">
           <div className="mb-3 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm font-semibold text-coral-600">
-              <ClipboardList size={16} />
+            <div className="flex items-center gap-2 font-display text-xs font-semibold uppercase tracking-wide text-strip/70">
+              <ClipboardList size={15} />
               To-Do
             </div>
-            <span className="text-xs text-foreground/50">{format(new Date(), "d MMMM")} &middot; Today</span>
+            <span className="font-mono text-xs uppercase tracking-wide text-strip/40">
+              {format(new Date(), "d MMMM")} &middot; Today
+            </span>
           </div>
           <TaskBoard tasks={todoTasks} categories={categories} emptyMessage="Nothing to do — add a task to get started." />
         </section>
@@ -51,13 +53,13 @@ export default async function DashboardPage() {
         <div className="space-y-6">
           <TaskStatusPanel counts={counts} />
 
-          <section className="rounded-2xl bg-panel p-5 shadow-sm">
-            <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-coral-600">
-              <CheckCircle2 size={16} />
+          <section className="rounded border border-board-line bg-board-raised p-5">
+            <div className="mb-4 flex items-center gap-2 font-display text-xs font-semibold uppercase tracking-wide text-strip/70">
+              <CheckCircle2 size={15} />
               Completed Task
             </div>
             {completedTasks.length === 0 ? (
-              <p className="text-sm text-foreground/50">No completed tasks yet.</p>
+              <p className="text-sm text-strip/40">No completed tasks yet.</p>
             ) : (
               <div className="space-y-3">
                 {completedTasks.map((task) => (
