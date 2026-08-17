@@ -10,10 +10,13 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "npm run dev",
+    // Production mode, not `next dev`: dev mode is single-process and has shown genuine
+    // concurrency issues under Playwright's parallel workers (intermittent MissingCSRF /
+    // auth timeouts on simultaneous signup+auto-login flows, unrelated to app correctness).
+    command: "npm run build && npm run start",
     url: "http://localhost:3000",
-    reuseExistingServer: true,
-    timeout: 120_000,
+    reuseExistingServer: false,
+    timeout: 180_000,
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
 });

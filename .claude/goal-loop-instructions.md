@@ -36,18 +36,30 @@ update `OBJECTIVES.md`, and report — then stop. Do not try to finish everythin
 Run in order, cheapest first, fixing forward on failure before proceeding:
 1. `npm run typecheck`
 2. `npm run lint`
-3. `npm run build`
+3. `npm run build` — **on Windows, stop any running `node.exe` dev/start server first**
+   (`Get-CimInstance Win32_Process -Filter "Name='node.exe'"` then `Stop-Process -Force` on the
+   PIDs), or `prisma generate` fails with `EPERM` because the running server holds the native
+   engine DLL open.
 4. `npm run test` (vitest — add a spec under `tests/unit/` if the objective is a pure
    function/component and none exists yet)
 5. The objective's specific acceptance test:
-   - API/status-code checks: use `curl` against a running dev server (start one with
-     `npm run dev` in the background if none is running; curl each route once first to warm
-     Turbopack's lazy compilation before relying on timing-sensitive checks — a cold first hit to
-     an uncompiled route can look like a transient failure).
-   - UI/browser-behavior checks: add or extend a Playwright spec under `tests/e2e/` (see
-     `tests/e2e/helpers.ts`'s `signupAndLogin` for the pattern — each e2e test should sign up its
-     own fresh user rather than sharing the seeded demo user, since tests run in parallel) and
-     run `npm run test:e2e`. Keep the spec — it's permanent regression coverage, not throwaway.
+   - API/status-code checks: use `curl` — either against a manually-started `npm run dev` (warm
+     each route once first; Turbopack's lazy compilation can otherwise make the first hit to an
+     uncompiled route look like a transient failure) or, for anything auth-related, prefer
+     verifying via an e2e spec instead (see below) since dev mode has known auth quirks that
+     don't reflect production behavior.
+   - UI/browser-behavior or auth-related checks: add or extend a Playwright spec under
+     `tests/e2e/` (see `tests/e2e/helpers.ts`'s `signupAndLogin` for the pattern — each e2e test
+     signs up its own fresh user) and run `npm run test:e2e`. **This runs against a production
+     server** (`playwright.config.ts`'s `webServer.command` is `npm run build && npm run start`,
+     `reuseExistingServer: false`) — port 3000 must be free before running it (stop any manual
+     dev server first, same as for `build`). Keep the spec — it's permanent regression coverage.
+     If a test only fails intermittently, don't assume it's flaky noise: re-run it 5-10x in
+     isolation (`npx playwright test tests/e2e/<file> --reporter=list`) before writing it off —
+     two real bugs (`trustHost` missing in production, and a logout/session-touch race caused by
+     Sidebar's `<Link>` prefetching) were found exactly this way and would have been masked by
+     assuming flakiness. See the "Major finding" note in `OBJECTIVES.md` section 9 for the full
+     story and fix pattern if something in this shape comes up again.
    - DB-state checks: query via a short one-off script using `@prisma/client`, don't assume.
 6. If a check fails, fix the implementation. Only correct the objective's wording in
    `OBJECTIVES.md` if the acceptance test itself was actually wrong/ambiguous, and say so in the

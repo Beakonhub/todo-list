@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { logout } from "@/lib/auth-client";
 import {
   LayoutDashboard,
   Star,
@@ -50,6 +50,7 @@ export function Sidebar({ user }: { user: { name?: string | null; email?: string
             <Link
               key={href}
               href={href}
+              prefetch={false}
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
                 active ? "bg-white text-coral-600" : "text-white/90 hover:bg-white/15"
@@ -64,7 +65,7 @@ export function Sidebar({ user }: { user: { name?: string | null; email?: string
 
       <button
         type="button"
-        onClick={() => signOut({ callbackUrl: "/login" })}
+        onClick={() => logout()}
         className="mt-auto flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/15"
       >
         <LogOut size={18} />
